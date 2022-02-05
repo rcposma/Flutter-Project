@@ -3,12 +3,62 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MyApp());
 }
-
+//buraya sınıfın altına iki fonksiyon oluşturdum
 class MyApp extends StatelessWidget {
-  String _img1 =
-      'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8MjAyMCUyMGNhcnN8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
-  String _img2 =
-      'https://emrealtunbilek.com/wp-content/uploads/2016/10/apple-icon-72x72.png';
+  Container containerOlustur(String harf, Color renk) {
+    return Container(
+      alignment: Alignment.center,
+      width: 75,
+      height: 75,
+      color: renk,
+      child: Text(
+        harf,
+        style: TextStyle(fontSize: 48),
+      ),
+    );
+  }
+
+  Container containerColOlustur(String harf, Color renk) {
+    return Container(
+          alignment: Alignment.center,
+          width: 73,
+          height: 73,
+          margin: EdgeInsets.only(top: 2),
+          color: renk,
+          child: Text(
+            harf,
+            style: TextStyle(fontSize: 48),
+          ),
+        );
+  }
+
+  Column dartColumnuOlustur() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+         Expanded(child: containerColOlustur("E", Colors.orange.shade100)),
+         Expanded(child: containerColOlustur("R", Colors.orange.shade200)),
+         Expanded(child: containerColOlustur("S", Colors.orange.shade300)),
+         Expanded(child: containerColOlustur("L", Colors.orange.shade400)),
+         Expanded(child: containerColOlustur("E", Colors.orange.shade500)),
+         Expanded(child: containerColOlustur("R", Colors.orange.shade600)),
+         Expanded(child: containerColOlustur("İ", Colors.orange.shade700)),
+      ],
+    );
+  }
+
+  Row dartRowunuOlustur() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        containerOlustur("D", Colors.orange.shade100),
+        containerOlustur("A", Colors.orange.shade300),
+        containerOlustur("R", Colors.orange.shade500),
+        containerOlustur("T", Colors.orange.shade700),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,94 +70,18 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.blueGrey,
         appBar: AppBar(
           backgroundColor: Colors.amber,
-          title: Text(
-            'Başlık',
-            style: TextStyle(
-                color: Colors.blueGrey,
-                fontSize: 25,
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.w800),
-          ),
+          title: Text("Flutter Dersleri"),
         ),
         body: Container(
-          color: Colors.black38,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Icon(
-                Icons.list,
-                size: 64,
-                color: Colors.amber,
-              ),
-              Icon(
-                Icons.camera_alt,
-                size: 64,
-                color: Colors.amber,
-              ),
-              Icon(
-                Icons.notification_add,
-                size: 64,
-                color: Colors.amber,
-              ),
-              Icon(
-                Icons.explore_outlined,
-                size: 64,
-                color: Colors.amber,
-              ),
-              Icon(
-                Icons.alarm,
-                size: 64,
-                color: Colors.amber,
-              ),
-              Icon(
-                Icons.settings,
-                size: 64,
-                color: Colors.amber,
-              ),
+            children: [
+               dartRowunuOlustur(),
+              Expanded(child: dartColumnuOlustur()),
             ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            debugPrint('Tıklandı');
-          },
-          child: Icon(
-            Icons.account_circle_rounded,
-            color: Colors.amber,
           ),
         ),
       ),
     );
-  }
-
-  Center containerDersleri() {
-    return Center(
-        child: Container(
-      padding: EdgeInsets.all(20),
-      child: Text(
-        'TEST',
-        style: TextStyle(fontSize: 100),
-      ),
-      decoration: BoxDecoration(
-          color: Colors.amber,
-          shape: BoxShape.rectangle,
-          border: Border.all(width: 4, color: Colors.black38),
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(50),
-            topRight: Radius.circular(50),
-          ),
-          image: DecorationImage(
-              image: NetworkImage(_img2),
-              fit: BoxFit.scaleDown,
-              repeat: ImageRepeat.repeat),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.black38, offset: Offset(5, 10), blurRadius: 10),
-            BoxShadow(
-                color: Colors.black38, offset: Offset(0, -5), blurRadius: 10)
-          ]),
-    ));
   }
 }
